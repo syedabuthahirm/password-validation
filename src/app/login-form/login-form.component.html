@@ -1,0 +1,52 @@
+<div class="container">
+    <div class="row">
+        <div class="col-6 offset-3">
+            <div class="card">
+                <div class="card-header">
+                    Change Password
+                </div>
+                <div class="card-body">
+                    <form [formGroup]="changePasswordForm">
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input
+                                [ngClass]="changePasswordForm.controls['password'].touched && changePasswordForm.controls['password'].invalid ? 'is-invalid' : ''"
+                                formControlName="password" type="password" name="password" class="form-control"
+                                id="password">
+                            <div class="mt-2 ms-4 d-flex flex-column">
+                                <p [ngClass]="changePasswordForm.get('password')?.hasError('required') || changePasswordForm.get('password')?.hasError('minlength') ? 'text-danger' : 'text-success'"
+                                    class="mb-2">Must be at least {{passwordMinLength}} characters!</p>
+                                <p [ngClass]="changePasswordForm.get('password')?.hasError('required') || changePasswordForm.get('password')?.hasError('hasNumber') ? 'text-danger' : 'text-success'"
+                                    class="mb-2">Must Contain at least 1 number!</p>
+                                <p [ngClass]="changePasswordForm.get('password')?.hasError('required') || changePasswordForm.get('password')?.hasError('hasCapitalCase') ? 'text-danger' : 'text-success'"
+                                    class="mb-2">Must Contain at least 1 in Capital Case!</p>
+                                <p [ngClass]="changePasswordForm.get('password')?.hasError('required') || changePasswordForm.get('password')?.hasError('hasSmallCase') ? 'text-danger' : 'text-success'"
+                                    class="mb-2">Must Contain at least 1 in Small Case!</p>
+                                <p [ngClass]="changePasswordForm.get('password')?.hasError('required') || changePasswordForm.get('password')?.hasError('hasSpecialCharacters') ? 'text-danger' : 'text-success'"
+                                    class="mb-2">Must Contain at least 1 in Special Character!</p>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="confirmPassword" class="form-label">Confirm Password</label>
+                            <input
+                                [ngClass]="changePasswordForm.controls['confirmPassword'].touched && changePasswordForm.controls['confirmPassword'].invalid ? 'is-invalid' : ''"
+                                type="password" formControlName="confirmPassword" name="confirmPassword"
+                                class="form-control" id="confirmPassword">
+                            <div class="mt-2 d-flex flex-column">
+                                <p class="mb-2 text-danger"
+                                    *ngIf="changePasswordForm.controls['confirmPassword'].touched && changePasswordForm.controls['confirmPassword'].hasError('required')">
+                                    Password is Required!
+                                </p>
+                                <p class="mb-2 text-danger"
+                                    *ngIf="!changePasswordForm.controls['confirmPassword'].hasError('required') && changePasswordForm.hasError('NoPassswordMatch')">
+                                    Password do not match
+                                </p>
+                            </div>
+                            {{passwordConfirm}}
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
