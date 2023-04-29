@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="row">
+        <div class="col-9 offset-1">
+            <div class="card">
+                <div class="card-header">
+                    New Format
+                </div>
+                <div class="card-body">
+                    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                        <label for="formatName" class="form-label">Format Name</label>
+                        <input
+                            [ngClass]="form.controls['formatName'].touched && form.controls['formatName'].invalid ? 'is-invalid' : ''"
+                            formControlName="formatName" type="text" name="formatName" class="form-control"
+                            id="formatName">
+                        <div class="form-check mt-3">
+                            <input
+                                [ngClass]="form.controls['isXML'].touched && form.controls['isXML'].invalid ? 'is-invalid' : ''"
+                                class="form-check-input" formControlName="isXML" type="checkbox" id="flexCheckChecked"
+                                checked>
+                            <label class="form-check-label" for="flexCheckChecked">
+                                Is XML
+                            </label>
+                        </div>
+                        <app-table-data [rasMapping]="rasMapping" [form]="form"></app-table-data>
+                        <button class="btn btn-primary" (click)="addRASMapping()">
+                            Add
+                        </button>
+                        <p>Form Value: {{ form.value | json }}</p>
+                        <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Submit</button>
+                        <button class="btn btn-warning" type="button" (click)="reset($event)">Reset</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

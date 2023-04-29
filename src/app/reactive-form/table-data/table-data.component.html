@@ -1,0 +1,28 @@
+<ng-container [formGroup]="form">
+    <table class="table table-striped table-hover" formArrayName="rasMapping">
+        <thead>
+            <tr>
+                <th scope="col">DB Field</th>
+                <th scope="col">Position</th>
+                <th scope="col">Length</th>
+                <th scope="col">Ras Include</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let mapingFormGroup of rasMapping.controls; let i = index">
+                <ng-container [formGroupName]="i">
+                    <th scope="row">
+                        <input formControlName="dbField" type="text" name="dbfield" class="form-control">
+                    </th>
+                    <td>
+                        <input formControlName="position" type="text" name="position" class="form-control">
+                    </td>
+                    <td><input formControlName="rasInclude" type="text" name="rasInclude" class="form-control"></td>
+                    <td>
+                        <input formControlName="length" type="text" name="length" class="form-control">
+                    </td>
+                </ng-container>
+            </tr>
+        </tbody>
+    </table>
+</ng-container>
